@@ -1,0 +1,31 @@
+{
+  "name": "thelist.gbgshorts.se",
+  "version": "0.0.0",
+  "description": "A RSVP function for gbgshorts.se",
+  "main": "index.js",
+  "repository": "git@github.com:adambrgmn/thelist.gbgshorts.se.git",
+  "author": "Adam Bergman <adam@fransvilhelm.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "env-cmd ./.env next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "firebase": "^3.7.5",
+    "next": "^2.0.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "serialize-javascript": "^1.3.0",
+    "styled-components": "^1.4.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.1",
+    "env-cmd": "^5.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3"
+  }
+}
