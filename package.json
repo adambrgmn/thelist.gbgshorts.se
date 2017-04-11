@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "env-cmd ./.env next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "echo 'No tests yet'"
   },
   "dependencies": {
     "firebase": "^3.7.5",
