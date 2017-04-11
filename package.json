@@ -2,7 +2,6 @@
   "name": "thelist.gbgshorts.se",
   "version": "0.1.0",
   "description": "A RSVP function for gbgshorts.se",
-  "main": "index.js",
   "repository": "git@github.com:adambrgmn/thelist.gbgshorts.se.git",
   "author": "Adam Bergman <adam@fransvilhelm.com>",
   "license": "MIT",
