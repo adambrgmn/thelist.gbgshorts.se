@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+- '7'
+cache: yarn
+before_script: npm install -g now
+branches:
+  only:
+  - master
+  - develop
+  - /^v.*$/
+script:
+- yarn test
+- yarn run build
+deploy:
+  provider: script
+  script: scripts/deploy.sh
+  on:
+    tags: true
+    branch:
+    - master
+notifications:
+  email: false
+  slack:
+    secure: 2YEb/vO2ctO451CIQWpj1jolKkLm3ePjs4E2k+Q52/kCGxfQcesIvyi+7qgIXr3E1Sdrgh3eLc4stcssTyZaTLY7SxgRjE0IiTYru35ztNwM6R9Dkt6nHw+6hruqQgFlOCdzgnrxO/eV3r+U/hk2gOhmm2Gq+0Y2Jjdf+UcjM/HABz+i86XTKlbs55lW7zfz7pYVdg0TNQRsZUPEvLDfJ70qH+c8ittGHgLqwzYYs9BHw0I+ToAzqSUjBRIKib/F19ZAra1aEzen0iozAePlcTXVNSLFxftAuGCTAQqKfgT0mCUGiZTos3wcVaefz9dwaoKgSp4Bt5lEsj+x7+kYb9Qimvm8tVEmGh235yL9vl9UFrDmrFN4eyMjOlgvoRI+a10g0OJleeiHckf09fN3tJ/Kc4bctfc4kyhw5SDuLUYRwbzznbWx5+sIkfBiyG6fZzDEo6PJDvzrGbiGYbsqaoKQa2I+poQWCOAk3q1xviTrZnuxqBxNG6K0cWuoohmHADPlEfB8ozrRGKZOWVtaZ1IsSyS7IHJkfNuIjNl+VcoQL/3M39bSc9o+ZmTAZY1gjUipZ+jTar+r+njtNocdtOyjQKQ4u4Zui8T1VKBuQQ/w+AdAaQafAvI+R0qA3cCYcF0M1uQeKmUP/TQJ5HyrcOD9CgmlpxxapyiC3suS+eo=
