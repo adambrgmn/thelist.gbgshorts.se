@@ -1,0 +1,8 @@
+{
+  "name": "thelist.gbgshorts",
+  "alias": "thelist.gbgshorts.se",
+  "type": "npm",
+  "env": {
+    "FIREBASE_KEY": "@gbgshorts-fb-key"
+  }
+}
