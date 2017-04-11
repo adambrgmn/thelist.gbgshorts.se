@@ -3,6 +3,7 @@
   "alias": "thelist.gbgshorts.se",
   "type": "npm",
   "env": {
-    "FIREBASE_KEY": "@gbgshorts-fb-key"
+    "FIREBASE_KEY": "@gbgshorts-fb-key",
+    "NODE_ENV": "production"
   }
 }
