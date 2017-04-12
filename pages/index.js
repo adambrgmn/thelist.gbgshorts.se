@@ -122,7 +122,7 @@ export default class Index extends Component {
                 onChange={this.onChange}
               />
             </InputBorder>
-          </label>
+          </label><br />
           <span> och din </span>
           <label htmlFor="email">
             email
