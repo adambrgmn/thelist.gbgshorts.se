@@ -88,7 +88,7 @@ export default class Index extends Component {
     addPerson({ name, email })
       .then(() => {
         const firstName = name.split(' ')[0];
-        const message = `Kul att du vill komma ${firstName}. Du får mail med mer info när det hela närmar sig!`;
+        const message = `Kul att du vill komma ${firstName}! Vi ses 22 april!`;
         this.setState(() => ({ showModal: true, message }));
       })
       .catch((err) => {

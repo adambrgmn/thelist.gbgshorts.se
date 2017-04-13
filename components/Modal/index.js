@@ -16,6 +16,8 @@ const ModalContainer = styled.div`
   height: 100vh;
   border-bottom: 0.5rem solid black;
   padding: 2rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
   background-color: #d8c0c0;
   transition: top 0.3s ease-out;
 `;
@@ -29,7 +31,7 @@ export default function Modal({
   return (
     <ModalContainer show={show}>
       <Paragraph>{error || message}</Paragraph>
-      <Paragraph>Du kan hålla dig uppdated på <Link href="https://www.facebook.com/gbgshorts">Facebook</Link> eller <Link href="https://www.instagram.com/gbgshorts/">Instagram</Link>.</Paragraph>
+      <Paragraph>Håll dig uppdaterad på <Link href="https://www.facebook.com/gbgshorts">Facebook</Link> eller <Link href="https://www.instagram.com/gbgshorts/">Instagram</Link>.</Paragraph>
       <Button onClick={onCloseClick}>
         {error ? 'Försök igen' : 'Lägg till fler'}
       </Button>
