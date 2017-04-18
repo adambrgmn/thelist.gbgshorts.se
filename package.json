@@ -10,8 +10,8 @@
     "build": "next build",
     "start": "next start",
     "test": "echo 'No tests yet'",
-    "fb:add": "node scripts/add-vip.js",
-    "fb:update": "node scripts/update-vip.js"
+    "db:add": "node scripts/add-vip.js",
+    "db:update": "node scripts/update-vip.js"
   },
   "dependencies": {
     "date-fns": "^1.28.3",
