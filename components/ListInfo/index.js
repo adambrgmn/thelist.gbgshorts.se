@@ -15,7 +15,9 @@ const Section = styled.span`
 export default function ListInfo({ people }) {
   const total = people.length;
   const checked = people.filter(person => person.checked).length;
-  const unchecked = total - checked;
+
+  const vipTotal = people.filter(p => p.vip).length;
+  const vipChecked = people.filter(p => p.vip && p.checked).length;
 
   return (
     <Container>
@@ -30,8 +32,13 @@ export default function ListInfo({ people }) {
       </Section>
 
       <Section>
-        <strong>Ej bockade: </strong>
-        {unchecked} st
+        <strong>VIP totalt: </strong>
+        {vipTotal} st
+      </Section>
+
+      <Section>
+        <strong>VIP bockade: </strong>
+        {vipChecked} st
       </Section>
     </Container>
   );

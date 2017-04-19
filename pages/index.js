@@ -104,18 +104,22 @@ export default class Index extends Component {
       showModal: false,
       message: '',
       error: '',
-    }));
+    }), () => {
+      this.formRef.reset();
+      this.nameRef.focus();
+    });
   }
 
   render() {
     return (
       <Container>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} ref={(ref) => { this.formRef = ref; }}>
           <span>Kul att du vill komma till Gbg Shorts 22 april! Vi behöver ditt </span>
           <label htmlFor="name">
             namn
             <InputBorder>
               <Input
+                innerRef={(ref) => { this.nameRef = ref; }}
                 type="text"
                 id="name"
                 value={this.state.name}

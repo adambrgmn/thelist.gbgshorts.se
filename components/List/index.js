@@ -53,7 +53,26 @@ export default function List({
   const sortedArray = R.compose(
     R.map(ListItem),
     arr => (reverse ? R.reverse(arr) : arr),
-    R.sortBy(R.prop(sortBy)),
+    (arr) => {
+      if (sortBy === 'checked' || sortBy === 'vip') {
+        return arr.sort((prev, curr) => {
+          const prevV = prev[sortBy] ? 1 : -1;
+          const currV = curr[sortBy] ? 1 : -1;
+
+          const res = prevV - currV;
+
+          if (res === 0 && R.toLower(prev.name) > R.toLower(curr.name)) return 1;
+          if (res === 0 && R.toLower(prev.name) < R.toLower(curr.name)) return -1;
+
+          return res;
+        });
+      }
+
+      if (sortBy === 'date') return R.sortBy(R.compose(R.prop(sortBy)))(arr);
+      if (sortBy === 'remove') return R.sortBy(R.compose(R.toLower, R.prop('name')))(arr);
+
+      return R.sortBy(R.compose(R.toLower, R.prop(sortBy)))(arr);
+    },
     R.filter(person => (!filterBy ? true : R.anyPass([nameContains, mailContains])(person))),
   );
 

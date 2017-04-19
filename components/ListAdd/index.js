@@ -68,14 +68,11 @@ export default class ListAdd extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
 
-    if (this.state.name && this.state.email) {
-      addPerson({ name: this.state.name, email: this.state.email })
-        .then(() => this.setState(() => ({ name: '', email: '' })));
-    } else {
-      console.log('Something happend');
-    }
+    addPerson({ name: this.state.name, email: this.state.email })
+      .then(() => this.setState(() => ({ name: '', email: '' })))
+      .then(() => this.formRef.reset())
+      .then(() => this.nameRef.focus());
   }
 
   onChange = (e) => {
@@ -87,16 +84,28 @@ export default class ListAdd extends Component {
 
   render() {
     return (
-      <Container onSubmit={this.onSubmit}>
+      <Container onSubmit={this.onSubmit} innerRef={(ref) => { this.formRef = ref; }}>
         <InputWrapper>
           <Label htmlFor="name">Namn:</Label>
-          <Input id="name" type="text" value={this.state.name} onChange={this.onChange} />
-          <ClearButton type="button" onClick={this.onClear('name')}>{'✗'}</ClearButton>
+          <Input
+            innerRef={(ref) => { this.nameRef = ref; }}
+            id="name"
+            type="text"
+            value={this.state.name}
+            onChange={this.onChange}
+          />
+          <ClearButton type="button" tabIndex="-1" onClick={this.onClear('name')}>{'✗'}</ClearButton>
         </InputWrapper>
         <InputWrapper>
           <Label htmlFor="email">Email:</Label>
-          <Input id="email" type="email" value={this.state.email} onChange={this.onChange} />
-          <ClearButton type="button" onClick={this.onClear('email')}>{'✗'}</ClearButton>
+          <Input
+            innerRef={(ref) => { this.emailRef = ref; }}
+            id="email"
+            type="email"
+            value={this.state.email}
+            onChange={this.onChange}
+          />
+          <ClearButton type="button" tabIndex="-1" onClick={this.onClear('email')}>{'✗'}</ClearButton>
         </InputWrapper>
         <SubmitButton type="submit" disabled={!this.state.name || !this.state.email}>Lägg till</SubmitButton>
       </Container>

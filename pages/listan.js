@@ -37,7 +37,7 @@ export default class Listan extends Component {
 
     this.state = {
       people: [],
-      sortBy: 'name',
+      sortBy: 'checked',
       filterBy: '',
       reverse: false,
     };
