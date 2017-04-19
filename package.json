@@ -1,6 +1,6 @@
 {
   "name": "thelist.gbgshorts.se",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A RSVP function for gbgshorts.se",
   "repository": "git@github.com:adambrgmn/thelist.gbgshorts.se.git",
   "author": "Adam Bergman <adam@fransvilhelm.com>",
