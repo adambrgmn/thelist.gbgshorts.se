@@ -12,6 +12,7 @@ import {
   Td,
   TheadButton,
   ButtonMark,
+  TableActionButton,
 } from '../Table';
 
 function createRegExp(str) {
@@ -25,21 +26,22 @@ export default function List({
   onSortClick,
   reverse,
   onCheckClick,
+  onVipClick,
+  onRemoveClick,
 }) {
   function ListItem(person) {
     return (
       <Tr
         key={person.id}
         checked={person.checked}
-        onClick={() => onCheckClick(person)}
+        onClick={onCheckClick(person)}
       >
-        <Th scope="row" center>
-          {person.checked ? '✓' : '✗'}
-        </Th>
+        <Th scope="row" center>{person.checked ? '✓' : ' '}</Th>
         <Td>{person.name}</Td>
         <Td>{person.email}</Td>
-        <Td>{person.vip ? '✓' : ' '}</Td>
+        <Td center><TableActionButton onClick={onVipClick(person)}>{person.vip ? '✓' : ' '}</TableActionButton></Td>
         <Td>{format(person.date, 'YYYY-MM-DD HH:mm')}</Td>
+        <Td center><TableActionButton onClick={onRemoveClick(person)}>✗</TableActionButton></Td>
       </Tr>
     );
   }
@@ -61,6 +63,7 @@ export default function List({
     { id: 'email', title: 'Email' },
     { id: 'vip', title: 'VIP' },
     { id: 'date', title: 'Datum' },
+    { id: 'remove', title: 'Ta bort' },
   ];
 
   return (
@@ -98,6 +101,7 @@ List.propTypes = {
   onSortClick: PropTypes.func.isRequired,
   reverse: PropTypes.bool,
   onCheckClick: PropTypes.func.isRequired,
+  onVipClick: PropTypes.func.isRequired,
   onRemoveClick: PropTypes.func.isRequired,
 };
 

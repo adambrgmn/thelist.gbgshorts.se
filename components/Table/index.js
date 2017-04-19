@@ -23,7 +23,6 @@ export const Tr = styled.tr`
 
   &:hover { background-color: rgba(0, 0, 0, 0.075); }
   thead &:hover { background-color: transparent; }
-  tbody & { cursor: pointer; }
 `;
 
 export const Th = styled.th`
@@ -44,7 +43,7 @@ export const Td = styled.td`
   vertical-align: top;
   border-top: 1px solid #eceeef;
   padding: 0.75rem;
-  text-align: left;
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 
   thead & {
     vertical-align: bottom;
@@ -91,8 +90,8 @@ export const ButtonMark = styled.span`
 `;
 
 export const TableActionButton = styled.button`
-  width: 100%;
-  height: 100%;
+  width: 1rem;
+  height: 1rem;
   margin: 0;
   border: none;
   font-size: 1rem;
@@ -100,4 +99,5 @@ export const TableActionButton = styled.button`
   cursor: pointer;
 
   &:focus { outline: none; }
+  &:hover { background-color: rgba(0, 0, 0, 0.075); }
 `;

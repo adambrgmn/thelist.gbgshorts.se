@@ -8,9 +8,10 @@ import db, { fb } from '../lib/db';
 import FilterInput from '../components/FilterInput';
 import List from '../components/List';
 import ListInfo from '../components/ListInfo';
+import ListAdd from '../components/ListAdd';
 
 const Container = styled.div`
-  width: 800px;
+  width: 850px;
   margin: 0 auto;
 `;
 
@@ -31,7 +32,6 @@ const LogOut = styled.button`
 `;
 
 export default class Listan extends Component {
-
   constructor(props) {
     super(props);
 
@@ -96,15 +96,25 @@ export default class Listan extends Component {
     return this.setState(() => ({ sortBy: prop }));
   };
 
-  onCheckClick = (person) => {
+
+  onCheckClick = person => () => {
     const updates = {};
     updates[`/people/${person.id}/checked`] = !person.checked;
     db.update(updates);
   }
 
-  onRemoveClick = (id) => {
-    db.child(`people/${id}`).remove();
+  onRemoveClick = person => (e) => {
+    if (e.stopPropagation) e.stopPropagation();
+    db.child(`people/${person.id}`).remove();
   }
+
+  onVipClick = person => (e) => {
+    if (e.stopPropagation) e.stopPropagation();
+    const updates = {};
+    updates[`/people/${person.id}/vip`] = !person.vip;
+    db.update(updates);
+  }
+
 
   onFilterChange = ({ target }) => {
     this.setState(() => ({ filterBy: target.value }));
@@ -137,8 +147,10 @@ export default class Listan extends Component {
           reverse={this.state.reverse}
           onCheckClick={this.onCheckClick}
           onRemoveClick={this.onRemoveClick}
+          onVipClick={this.onVipClick}
         />
-        <div>
+        <div style={{ marginTop: '5rem' }}>
+          <ListAdd />
           <LogOut type="button" onClick={this.onLogoutClick}>Logga ut</LogOut>
         </div>
       </Container>
