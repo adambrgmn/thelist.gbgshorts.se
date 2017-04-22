@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import { addPerson } from '../lib/api';
+import db from '../lib/db';
 
 import { Button } from '../components/Shared';
 import Modal from '../components/Modal';
@@ -51,6 +52,12 @@ const InputBorder = styled.span`
 `;
 
 export default class Index extends Component {
+  static async getInitialProps() {
+    const open = await db.child('open').once('value');
+
+    return { open: open.val() };
+  }
+
   constructor(props) {
     super(props);
 
@@ -104,22 +111,18 @@ export default class Index extends Component {
       showModal: false,
       message: '',
       error: '',
-    }), () => {
-      this.formRef.reset();
-      this.nameRef.focus();
-    });
+    }));
   }
 
   render() {
     return (
       <Container>
-        <form onSubmit={this.onSubmit} ref={(ref) => { this.formRef = ref; }}>
+        {this.props.open ? <div><form onSubmit={this.onSubmit}>
           <span>Kul att du vill komma till Gbg Shorts 22 april! Vi behöver ditt </span>
           <label htmlFor="name">
             namn
             <InputBorder>
               <Input
-                innerRef={(ref) => { this.nameRef = ref; }}
                 type="text"
                 id="name"
                 value={this.state.name}
@@ -147,12 +150,13 @@ export default class Index extends Component {
             Skriv upp mig
           </Button>
         </form>
-        <Modal
-          message={this.state.message}
-          error={this.state.error}
-          show={this.state.showModal}
-          onCloseClick={this.onCloseClick}
-        />
+          <Modal
+            message={this.state.message}
+            error={this.state.error}
+            show={this.state.showModal}
+            onCloseClick={this.onCloseClick}
+          /></div> :
+          <p>Listan är stängd...</p>}
       </Container>
     );
   }
